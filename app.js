@@ -1,4 +1,5 @@
 var express = require('express');
+const cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -16,6 +17,10 @@ const themeRoutes = require('./routes/themeRoutes');
 const contentRoutes = require('./routes/contentRoutes');
 
 var app = express();
+app.use(cors({
+  origin: '*',
+  credentials: true,
+}));
 app.use(bodyParser.json());
 
 mongoose.connect('mongodb://127.0.0.1:27017/media_content_manager_db', { auth: { username: "admin", password: "1234" } })
